@@ -1,0 +1,23 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="waitforall.js"></script>
+<script>
+	$(function() {
+		var wfa = waitforall();
+
+		var h1 = wfa.wrap(function(data) {
+			console.log('handler js', this, data);
+		});
+		console.log('h1', h1.id, h1);
+		$.get('waitforall.js', {}, h1);
+
+		var h2 = wfa.wrap(function(data) {
+			console.log('handler html', this, data);
+		});
+		console.log('h2', h2.id, h2);
+		$.get('waitforall.html', {}, h2);
+
+		wfa.wait(function() {
+			console.log('all done');
+		});
+	});
+</script>
